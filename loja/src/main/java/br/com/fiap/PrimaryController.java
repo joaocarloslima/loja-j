@@ -1,5 +1,6 @@
 package br.com.fiap;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,16 +34,16 @@ public class PrimaryController implements Initializable {
 
     String server = "sql719.main-hosting.eu";
     String database = "u553405907_fiap";
-    String username = "u553405907_fiap";
-    String pass = "Fiap@2022";
-    String url = "jdbc:mysql://" + server + ":3306/" + database;
+    String username = "PF1389";
+    String pass = "fiaPf21";
+    String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
    
     public void salvar() {
         var usuario = carregarUsuarioDoFormulario();
         System.out.println(usuario);
 
-        String sql = String.format("INSERT INTO USUARIOS (id, nome, email, senha, perfil) " +
-                "VALUES (0, '%s', '%s', '%s', '%s')",
+        String sql = String.format("INSERT INTO USUARIOS (id_usuario, nome, email, senha, perfil) " +
+                "VALUES (usuario_seq.nextval, '%s', '%s', '%s', '%s')",
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getSenha(),
@@ -76,6 +77,10 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         choiceBoxPerfil.getItems().addAll(List.of("USUARIO", "VENDEDOR", "GERENTE"));
+    }
+
+    public void abrirListaDeUsuario() throws IOException{
+        App.setRoot("secondary");
     }
 
 }
