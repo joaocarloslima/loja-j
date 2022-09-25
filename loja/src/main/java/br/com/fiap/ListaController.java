@@ -28,8 +28,8 @@ public class ListaController implements Initializable {
     }
 
     public void carregarDados(){
-        String username = "PF1389";
-        String pass = "fiaPf21";
+        String username = "";
+        String pass = "";
         String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
         
         try {
